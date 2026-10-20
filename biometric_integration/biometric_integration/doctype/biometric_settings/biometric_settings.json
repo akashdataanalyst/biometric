@@ -1,0 +1,285 @@
+{
+ "actions": [],
+ "creation": "2026-10-18 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_status",
+  "enabled",
+  "setup_status",
+  "section_connection",
+  "server_url",
+  "adms_port",
+  "device_timezone",
+  "column_break_conn",
+  "auto_register_devices",
+  "auto_approve_devices",
+  "section_token",
+  "api_token",
+  "column_break_token",
+  "token_help",
+  "section_processing",
+  "match_employee_by",
+  "match_custom_field",
+  "log_type_mode",
+  "alternate_window_hours",
+  "duplicate_window_seconds",
+  "column_break_processing",
+  "strip_leading_zeros",
+  "ignore_punches_before",
+  "future_tolerance_minutes",
+  "update_shift_last_sync",
+  "section_monitoring",
+  "offline_after_minutes",
+  "column_break_monitoring",
+  "keep_logs_days",
+  "section_webhook",
+  "webhook_user_field",
+  "webhook_time_field",
+  "column_break_webhook",
+  "webhook_type_field",
+  "webhook_device_field"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_status",
+   "fieldtype": "Section Break",
+   "label": "Setup Status"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enable Biometric Integration"
+  },
+  {
+   "fieldname": "setup_status",
+   "fieldtype": "HTML",
+   "label": "Setup Status"
+  },
+  {
+   "fieldname": "section_connection",
+   "fieldtype": "Section Break",
+   "label": "Server & Machines"
+  },
+  {
+   "description": "The address your machines will call, e.g. erp.yourcompany.com or http://erp.yourcompany.com:8081. Shown in every device's setup instructions.",
+   "fieldname": "server_url",
+   "fieldtype": "Data",
+   "label": "Public Server Address"
+  },
+  {
+   "default": "80",
+   "description": "Port you type on the machine. 80 is easiest. Use a separate HTTP port (e.g. 8081) if your site forces HTTPS - most eSSL machines only speak HTTP.",
+   "fieldname": "adms_port",
+   "fieldtype": "Int",
+   "label": "Port for Machines"
+  },
+  {
+   "description": "Optional. Leave empty to use this site's time zone (India: sent to the machine as 330 minutes). Or type hours, e.g. 5.5 or +5:30. ADMS machines set their clock from the server with this.",
+   "fieldname": "device_timezone",
+   "fieldtype": "Data",
+   "label": "Device Time Zone (hours)"
+  },
+  {
+   "fieldname": "column_break_conn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "description": "A machine that connects for the first time is added to Biometric Device automatically.",
+   "fieldname": "auto_register_devices",
+   "fieldtype": "Check",
+   "label": "Auto-register New Machines"
+  },
+  {
+   "default": "0",
+   "description": "If off, a new machine shows as 'Pending Approval'. Its punches are kept and processed as soon as you approve it.",
+   "fieldname": "auto_approve_devices",
+   "fieldtype": "Check",
+   "label": "Auto-approve New Machines"
+  },
+  {
+   "fieldname": "section_token",
+   "fieldtype": "Section Break",
+   "label": "API Token (Webhook, LAN Agent, Simulator)"
+  },
+  {
+   "description": "Sent by webhook / LAN agent in the header X-Biometric-Token. Use 'Generate API Token' to create one.",
+   "fieldname": "api_token",
+   "fieldtype": "Password",
+   "label": "API Token",
+   "length": 140
+  },
+  {
+   "fieldname": "column_break_token",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "token_help",
+   "fieldtype": "HTML",
+   "label": "Token Help"
+  },
+  {
+   "fieldname": "section_processing",
+   "fieldtype": "Section Break",
+   "label": "Punch Processing"
+  },
+  {
+   "default": "Device ID, Emp Code or Employee ID",
+   "description": "How the user ID / PIN from the machine finds the employee. Default tries Attendance Device ID, then Employee Number (Emp Code), then Employee ID.",
+   "fieldname": "match_employee_by",
+   "fieldtype": "Select",
+   "label": "Match Employee By",
+   "options": "Device ID, Emp Code or Employee ID\nAttendance Device ID\nEmployee Number (Emp Code)\nEmployee ID\nCustom Employee Field"
+  },
+  {
+   "description": "Optional. Fieldname of your own emp code field on Employee, e.g. custom_emp_code. Also checked (last) in the default mode.",
+   "fieldname": "match_custom_field",
+   "fieldtype": "Data",
+   "label": "Custom Employee Field"
+  },
+  {
+   "default": "Alternate IN / OUT",
+   "description": "Alternate is safest: many machines send every punch as 'Check-In' unless staff press a key.",
+   "fieldname": "log_type_mode",
+   "fieldtype": "Select",
+   "label": "Decide IN / OUT",
+   "options": "Alternate IN / OUT\nDevice Punch State, else Alternate\nDevice Punch State Only\nLeave Blank (Shift Type decides)"
+  },
+  {
+   "default": "14",
+   "description": "For alternate mode: look back this many hours for the previous punch (covers night shifts).",
+   "fieldname": "alternate_window_hours",
+   "fieldtype": "Int",
+   "label": "Alternate Window (hours)"
+  },
+  {
+   "default": "60",
+   "description": "Staff often punch twice. A second punch within this time is marked Duplicate.",
+   "fieldname": "duplicate_window_seconds",
+   "fieldtype": "Int",
+   "label": "Ignore Repeat Punch Within (seconds)"
+  },
+  {
+   "fieldname": "column_break_processing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "strip_leading_zeros",
+   "fieldtype": "Check",
+   "label": "Treat 00101 and 101 as the Same ID"
+  },
+  {
+   "description": "When a machine is connected for the first time it may upload years of old data. Punches before this date are stored but not turned into checkins.",
+   "fieldname": "ignore_punches_before",
+   "fieldtype": "Date",
+   "label": "Ignore Punches Before"
+  },
+  {
+   "default": "15",
+   "fieldname": "future_tolerance_minutes",
+   "fieldtype": "Int",
+   "label": "Reject Punches More Than N Minutes in the Future"
+  },
+  {
+   "default": "1",
+   "description": "HRMS Auto Attendance only processes checkins up to this time. Updated every 5 minutes for shift types with Auto Attendance enabled.",
+   "fieldname": "update_shift_last_sync",
+   "fieldtype": "Check",
+   "label": "Update 'Last Sync of Checkin' on Shift Types"
+  },
+  {
+   "fieldname": "section_monitoring",
+   "fieldtype": "Section Break",
+   "label": "Monitoring & Cleanup"
+  },
+  {
+   "default": "10",
+   "fieldname": "offline_after_minutes",
+   "fieldtype": "Int",
+   "label": "Mark Machine Offline After (minutes)"
+  },
+  {
+   "fieldname": "column_break_monitoring",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "0 = keep forever. Employee Checkins are never deleted.",
+   "fieldname": "keep_logs_days",
+   "fieldtype": "Int",
+   "label": "Delete Processed Raw Logs After (days)"
+  },
+  {
+   "collapsible": 1,
+   "description": "Leave blank - common names like user_id, emp_code, pin, timestamp, punch_time, type, status are detected automatically. Fill only if your system uses unusual names.",
+   "fieldname": "section_webhook",
+   "fieldtype": "Section Break",
+   "label": "Webhook Field Mapping (optional)"
+  },
+  {
+   "fieldname": "webhook_user_field",
+   "fieldtype": "Data",
+   "label": "User ID Field"
+  },
+  {
+   "fieldname": "webhook_time_field",
+   "fieldtype": "Data",
+   "label": "Time Field"
+  },
+  {
+   "fieldname": "column_break_webhook",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "webhook_type_field",
+   "fieldtype": "Data",
+   "label": "IN/OUT Field"
+  },
+  {
+   "fieldname": "webhook_device_field",
+   "fieldtype": "Data",
+   "label": "Device Field"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-19 18:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Biometric Integration",
+ "name": "Biometric Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,319 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:serial_no",
+ "creation": "2026-10-18 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_main",
+  "serial_no",
+  "device_name",
+  "protocol",
+  "model",
+  "column_break_main",
+  "status",
+  "online_status",
+  "last_heartbeat",
+  "last_punch_on",
+  "total_punches",
+  "is_virtual",
+  "section_setup",
+  "setup_instructions",
+  "section_location",
+  "company",
+  "branch",
+  "location",
+  "column_break_location",
+  "punch_direction",
+  "time_offset_minutes",
+  "latitude",
+  "longitude",
+  "section_info",
+  "device_ip",
+  "mac_address",
+  "firmware",
+  "column_break_info",
+  "user_count",
+  "fp_count",
+  "face_count",
+  "att_count",
+  "section_security",
+  "device_token",
+  "column_break_security",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_main",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "eSSL/ZKTeco: Menu > System Info > Device Info > Serial Number. For other machines any unique name, e.g. GATE-1.",
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "in_list_view": 0,
+   "label": "Serial No / Device ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "bold": 1,
+   "description": "e.g. Head Office Main Gate",
+   "fieldname": "device_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Device Name",
+   "reqd": 1
+  },
+  {
+   "default": "ADMS (eSSL / ZKTeco Push)",
+   "fieldname": "protocol",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Connection Type",
+   "options": "ADMS (eSSL / ZKTeco Push)\nHikvision ISAPI\nGeneric Webhook\nLAN Agent (ZK Pull)\nFile Import",
+   "reqd": 1
+  },
+  {
+   "description": "Pick from the list for this Connection Type, or type any other model",
+   "fieldname": "model",
+   "fieldtype": "Autocomplete",
+   "label": "Model"
+  },
+  {
+   "fieldname": "column_break_main",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Active\nPending Approval\nDisabled"
+  },
+  {
+   "default": "Never Connected",
+   "fieldname": "online_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Connection",
+   "options": "Never Connected\nOnline\nOffline",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_heartbeat",
+   "fieldtype": "Datetime",
+   "label": "Last Heartbeat",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_punch_on",
+   "fieldtype": "Datetime",
+   "label": "Last Punch",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total_punches",
+   "fieldtype": "Int",
+   "label": "Total Punches Received",
+   "read_only": 1
+  },
+  {
+   "description": "Created by the Simulator for testing without a real machine.",
+   "fieldname": "is_virtual",
+   "fieldtype": "Check",
+   "label": "Virtual / Test Device"
+  },
+  {
+   "fieldname": "section_setup",
+   "fieldtype": "Section Break",
+   "label": "How to Connect This Machine"
+  },
+  {
+   "fieldname": "setup_instructions",
+   "fieldtype": "HTML",
+   "label": "Setup Instructions"
+  },
+  {
+   "fieldname": "section_location",
+   "fieldtype": "Section Break",
+   "label": "Location & Rules"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Branch",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location / Gate"
+  },
+  {
+   "fieldname": "column_break_location",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "As per Settings",
+   "description": "Use 'Always IN' for an entry-gate machine and 'Always OUT' for an exit-gate machine.",
+   "fieldname": "punch_direction",
+   "fieldtype": "Select",
+   "label": "Punch Direction",
+   "options": "As per Settings\nAlways IN\nAlways OUT"
+  },
+  {
+   "default": "0",
+   "description": "If this machine's clock is wrong, add or subtract minutes here, e.g. -7.",
+   "fieldname": "time_offset_minutes",
+   "fieldtype": "Int",
+   "label": "Clock Correction (minutes)"
+  },
+  {
+   "description": "Only needed if HR Settings > Allow Geolocation Tracking is on.",
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "precision": "8"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "precision": "8"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_info",
+   "fieldtype": "Section Break",
+   "label": "Reported by the Machine"
+  },
+  {
+   "fieldname": "device_ip",
+   "fieldtype": "Data",
+   "label": "IP Address",
+   "read_only": 1
+  },
+  {
+   "description": "Used to identify Hikvision terminals.",
+   "fieldname": "mac_address",
+   "fieldtype": "Data",
+   "label": "MAC Address"
+  },
+  {
+   "fieldname": "firmware",
+   "fieldtype": "Data",
+   "label": "Firmware",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_info",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "user_count",
+   "fieldtype": "Int",
+   "label": "Users on Machine",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fp_count",
+   "fieldtype": "Int",
+   "label": "Fingerprints",
+   "read_only": 1
+  },
+  {
+   "fieldname": "face_count",
+   "fieldtype": "Int",
+   "label": "Faces",
+   "read_only": 1
+  },
+  {
+   "fieldname": "att_count",
+   "fieldtype": "Int",
+   "label": "Logs on Machine",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_security",
+   "fieldtype": "Section Break",
+   "label": "Security & Notes"
+  },
+  {
+   "description": "Optional. A token only this device's webhook / LAN agent can use instead of the global API Token.",
+   "fieldname": "device_token",
+   "fieldtype": "Password",
+   "label": "Device Token",
+   "length": 140
+  },
+  {
+   "fieldname": "column_break_security",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-10-18 18:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Biometric Integration",
+ "name": "Biometric Device",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User"
+  }
+ ],
+ "search_fields": "device_name,branch,location",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "device_name",
+ "track_changes": 1
+}
